@@ -3,7 +3,7 @@ const router = express.Router();
 const database = require('../firebase').database;
 
 router.post('/donateItems', async (req, res) => {
-  const donations = await database.collection('shelter').doc(req.body.name).donations;
+  const donations = await database.collection('shelter').doc(req.body.name).needs;
   let listOfItems = {};
   if (req.body.donations == null) {
     res.send("Undefined list");

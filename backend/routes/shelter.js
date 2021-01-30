@@ -8,7 +8,7 @@ router.get('/getShelters', async (req, res) => {
   
   allShelters.forEach(doc => {
     let needs = [];
-    (doc.donations).forEach(items => {
+    (doc.needs).forEach(items => {
       items.sort((a, b) => (-1 * (a[1] - b[1])));
       let i = 0;
       while (i < 3 && i < items.length) {
@@ -47,7 +47,7 @@ router.post('/rankShelters', async (req, res) => {
 
   allShelters.forEach(doc => {
     let score = 0;
-    (doc.donations).forEach(items => {
+    (doc.needs).forEach(items => {
       if (items[0] in listOfItems) {
         if (doc.category == priorityCategory) {
           score += 5;
