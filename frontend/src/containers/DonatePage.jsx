@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Map from '../components/Map';
 import SideBar from '../components/SideBar';
 
+import { loadLocations } from '../actions/MapActions';
+
 const DonatePageContainer = () => {
 
   const [sideBarVis, setSideBar] = useState(true);
@@ -13,6 +15,7 @@ const DonatePageContainer = () => {
 
   const mapLoad = map => {
     window.map = map;
+    loadLocations(map);
   };
 
   return (

@@ -11176,6 +11176,21 @@ text-table@0.2.0, text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+three@^0.115.0:
+  version "0.115.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.115.0.tgz#540d800c381b9da2334c024f0fbe4d23f84eb05e"
+  integrity sha512-mAV2Ky3RdcbdSbR9capI+tKLvRldWYxd4151PZTT/o7+U2jh9Is3a4KmnYwzyUAhB2ZA3pXSgCd2DOY4Tj5kow==
+
+threebox-plugin@^2.1.8:
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/threebox-plugin/-/threebox-plugin-2.1.8.tgz#42610e4b4aa0c05daf506b3c498b74f7390320f2"
+  integrity sha512-0zREu6S3N+wVHaZ30+FdWuJt+7wW/WOr7xJ6UKUixrtfKGBzeQN/rwGvTQiRksnyWEmDdqQjKpyfwXCpbeTXdg==
+
+threebox@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/threebox/-/threebox-0.1.5.tgz#b445fd5dd85d440b6def8a324a4cc4e8f0259262"
+  integrity sha1-tEX9XdhdRAtt74oySkzE6PAlkmI=
+
 throat@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-5.0.0.tgz#c5199235803aad18754a667d659b5e72ce16764b"

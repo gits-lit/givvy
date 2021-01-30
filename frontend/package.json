@@ -19,6 +19,9 @@
     "react-scripts": "4.0.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "three": "^0.115.0",
+    "threebox": "^0.1.5",
+    "threebox-plugin": "^2.1.8",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
