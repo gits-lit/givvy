@@ -1,11 +1,17 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import './style.scss';
 
 const HomePage= () => {
   return (
     <div className="home-page">
-      <h1>Hello World</h1>
+      <NavLink to="/donate">
+        <button>Start now</button>
+      </NavLink>
+      <NavLink to="/donate">
+        <button>Demo now</button>
+      </NavLink>
     </div>
   );
 };
