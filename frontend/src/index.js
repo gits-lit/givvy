@@ -10,6 +10,7 @@ import configureStore, { history } from './store';
 
 // Pages
 import HomePage from './containers/HomePage';
+import DonatePage from './containers/DonatePage';
 
 const store = configureStore();
 
@@ -18,6 +19,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <>
         <Switch>
+          <Route path="/donate" component={DonatePage} />
           <Route path="/" component={HomePage} />
         </Switch>
       </>
