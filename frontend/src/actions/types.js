@@ -1,0 +1,1 @@
+export const GET_SHELTERS = 'GET_SHELTERS';
