@@ -40,6 +40,9 @@
   }
 }
 
+.side-bar::-webkit-scrollbar {
+  width: 0 !important;
+}
 .side-bar {
   height: 90vh;
   overflow-y: scroll;
