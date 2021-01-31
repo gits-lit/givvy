@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import { Modal } from 'antd';
 import Webcam from "react-webcam";
 
+import {
+  Loading3QuartersOutlined
+} from '@ant-design/icons';
+
 import { scanItem } from '../../actions/VisionActions';
 
 import './style.scss';

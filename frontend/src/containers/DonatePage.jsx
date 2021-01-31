@@ -9,9 +9,9 @@ import { loadLocations } from '../actions/MapActions';
 
 const DonatePageContainer = () => {
 
-  const [sideBarVis, setSideBar] = useState(false);
+  const [sideBarVis, setSideBar] = useState(true);
 
-  const [isModalVisible, setIsModalVisible] = useState(true);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const toggleSideBar = (sideBarState) => {
     setSideBar(sideBarState);
