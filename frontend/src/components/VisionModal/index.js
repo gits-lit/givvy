@@ -100,6 +100,16 @@ const VisionModal = (props) => {
           <div className="item-list">
             <h1>Items</h1>
             <div className="line"></div>
+            {props.items.map((item) => {
+              const name = item[0];
+              const quantity = item[1];
+              return (
+                <div className="item" key={'item' + item[0]}>
+                  <p>{name}</p>
+                  <p>x{quantity}</p>
+                </div>
+              );
+            })}
             <div className="confirm-button">Confirm Items</div>
           </div>
         </div>
@@ -108,7 +118,11 @@ const VisionModal = (props) => {
   );
 };
 
+const mapStateToProps = state => ({
+  items: state.items.items
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { scanItem }
 )(VisionModal);
