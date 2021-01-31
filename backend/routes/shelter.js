@@ -26,6 +26,7 @@ router.get('/getShelters', async (req, res) => {
     shelters.push({
       name: doc.name,
       address: doc.address,
+      type: doc.type,
       lat: doc.lat,
       long: doc.long,
       category: doc.category,
@@ -73,10 +74,19 @@ router.post('/rankShelters', async (req, res) => {
         score += Math.min(parseInt(supply.need), parseInt((listOfItems[supply.name])[0]));
       }
     });
-    topShelters.push([doc.name, score]);
+    topShelters.push({
+      name: doc.name,
+      score: score,
+      address: doc.address,
+      type: doc.type,
+      lat: doc.lat,
+      long: doc.long,
+      category: doc.category,
+      donations: doc.needs
+    });
   });
 
-  topShelters.sort((a, b) => (-1 * (a[1] - b[1])));
+  topShelters.sort((a, b) => (-1 * (a.score - b.score)));
   topShelters = topShelters.slice(0, 10);
 
   res.send(topShelters);
