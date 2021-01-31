@@ -41,6 +41,10 @@ export const scanItem = (base64, callback, drawCanvas) => async dispatch => {
       console.log(data.responses);
       console.log(annotation.name);
       drawCanvas(annotation.boundingPoly.normalizedVertices);
+      dispatch({
+        type: ADD_ITEM,
+        payload: annotation.name
+      });
     }
   }
   */

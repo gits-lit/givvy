@@ -13,9 +13,15 @@ const HomePage = () => {
       <div className="homenav">
         <h2>givvy</h2>
         <div className="links">
-          <h4>Locations</h4>
-          <h4>Analytics</h4>
-          <h4>Pricing</h4>
+          <NavLink to="/">
+            <h4>Locations</h4>
+          </NavLink>
+          <NavLink to="/">
+            <h4>Analytics</h4>
+          </NavLink>
+          <NavLink to="/">
+            <h4>Pricing</h4>
+          </NavLink>
         </div>
         <Button className="signin" size="large">
           Sign in >

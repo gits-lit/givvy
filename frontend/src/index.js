@@ -19,7 +19,7 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <>
         <Switch>
-          <Route path="/donate" component={DonatePage} />
+          <Route exact path="/donate" component={DonatePage} />
           <Route path="/" component={HomePage} />
         </Switch>
       </>
