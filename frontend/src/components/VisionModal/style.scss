@@ -1,26 +1,54 @@
+.ant-modal-body {
+  padding: 0;
+}
+
 .vision-modal {
-  height: 60vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 70vh;
+
+  .header {
+    padding-left: 8vw;
+  }
 
   video {
     object-fit: cover;
   }
 
   .camera {
+    position: absolute;
+    top: 15vh;
+    left: 8vw;
     width: 25vw;
-    height: 50vh;
+    height: 45vh;
     margin-right: 2vw;
     border-radius: 10px;
+    display: inline-block;
+  }
+
+  .screenshot {
+    position: absolute;
+    top: 15vh;
+    left: 8vw;
+    width: 25vw;
+    height: 45vh;
+    z-index: 6;
+    object-fit: cover;
+    border-radius: 10px;
+    display: inline-block;
   }
 
   .item-list {
-    position: relative;
+    top: 15vh;
+    position: absolute;
+    left: 37vw;
     display: inline-block;
     width: 25vw;
-    margin-left: 2vw;
-    height: 50vh;
+    height: 45vh;
+
+    .line {
+      width: 100%;
+      height: 3px;
+      background-color: #A643F4;
+    }
 
     .confirm-button {
       color: white;

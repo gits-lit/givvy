@@ -14,45 +14,48 @@ let cameraTimer;
 const VisionModal = (props) => {
 
   const webcamRef = React.useRef(null);
+  const [imageSrc, setImageSrc] = useState('');
 
   const closeModal = () => {
-    if (cameraTimer) {
-      clearInterval(cameraTimer);
-    }
     props.closeModal();
   }
 
   useEffect(() => {
     if (props.isModalVisible) {
       console.log('starting timer');
-      if (cameraTimer) {
-        clearInterval(cameraTimer);
-      }
-      cameraTimer = setInterval(() => {
-        const base64 = webcamRef.current.getScreenshot();
-        console.log('taking picture');
-        props.scanItem(base64);
-
-        // TODO: REMOVE TO DISABLE CAMERA;
-        clearInterval(cameraTimer);
-      }, 10000);
     }
-  }, [props.isModalVisible]);
+    playCamera();
+  }, []);
+
+  const playCamera = () => {
+    console.log('play camera');
+    setImageSrc('');
+    setTimeout(() => {
+      const base64 = webcamRef.current.getScreenshot();
+      console.log('taking picture');
+      setImageSrc(base64);
+      props.scanItem(base64, playCamera);
+    }, 10000);
+  }
 
   return (
     <div className="vision-modal-container">
       <Modal visible={props.isModalVisible} onOk={closeModal} onCancel={closeModal} footer={null} width="70vw">
         <div className="vision-modal">
+          <div className="header">
+            <h1>Scan Items to Donate</h1>
+          </div>
           <Webcam
             ref={webcamRef}
             className="camera"
-            height={866}
-            width={838}
-          
+            screenshotQuality={1}
           />
+          { imageSrc != '' && 
+            <img className="screenshot" src={imageSrc}></img>
+          }
           <div className="item-list">
             <h1>Items</h1>
-            <hr/>
+            <div className="line"></div>
             <div className="confirm-button">Confirm Items</div>
           </div>
         </div>

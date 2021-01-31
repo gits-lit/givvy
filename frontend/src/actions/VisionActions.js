@@ -1,4 +1,6 @@
-export const scanItem = (base64) => async dispatch => {
+import { ADD_ITEM } from './types';
+
+export const scanItem = (base64, callback) => async dispatch => {
   const payload = {
     requests: [
       {
@@ -8,13 +10,13 @@ export const scanItem = (base64) => async dispatch => {
         features: [
           {
             "maxResults": 1,
-            "type": "LABEL_DETECTION"
+            "type": "OBJECT_LOCALIZATION"
           },
         ]
       }
     ]
   }
-
+/*
   const response = await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${process.env.REACT_APP_API_KEY}`, {
     method: 'POST',
     headers: {
@@ -25,9 +27,11 @@ export const scanItem = (base64) => async dispatch => {
   });
 
   const data = await response.json();
-  console.log(data);
   if (!data) throw new Error('Empty response from server');
   if (data.error) throw new Error(data.error.message);
-  console.log(data);
+  console.log(data.responses[0].localizedObjectAnnotations[0].name);*/
 
+  setTimeout(() => {
+    callback();
+  }, 3000);
 }
