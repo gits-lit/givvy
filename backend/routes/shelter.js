@@ -51,7 +51,7 @@ router.post('/rankShelters', async (req, res) => {
   let listOfItems = [];
 
   (req.body.donations).forEach(supply => {
-    listOfItems[toLowerCase(supply[0])] = [supply[1], supply[2]];
+    listOfItems[supply[0].toLowerCase()] = [supply[1], supply[2]];
     category[supply[2]] += 1;
   });
 
