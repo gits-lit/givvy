@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './style.scss';
+import bg from '../../assets/hbg.png';
 
 const HomePage= () => {
   return (
