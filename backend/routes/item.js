@@ -9,16 +9,17 @@ router.post('/donateItems', async (req, res) => {
     res.send("Undefined list");
     return;
   }
-  (req.body.donations).forEach(item => {
-    if (item == null) {
+
+  (req.body.donations).forEach(supply => {
+    if (supply == null) {
       res.send("Undefined item");
     }
-    listOfItems[item[0]] = item[1];
+    listOfItems[supply[0]] = supply[1];
   });
 
-  donations.forEach(item => {
-    if (item[0] in listOfItems) {
-      item[2] = Math.min(item[1], item[2] + listOfItems[item[1]]);
+  donations.forEach(supply => {
+    if (supply.name in listOfItems) {
+      supply.possession = Math.min(supply.need, supply.possession + listOfItems[supply.name]);
     }
   });
   res.send("Donated Items");
