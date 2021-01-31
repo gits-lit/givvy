@@ -1,0 +1,36 @@
+.vision-modal {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  video {
+    object-fit: cover;
+  }
+
+  .camera {
+    width: 25vw;
+    height: 50vh;
+    margin-right: 2vw;
+    border-radius: 10px;
+  }
+
+  .item-list {
+    position: relative;
+    display: inline-block;
+    width: 25vw;
+    margin-left: 2vw;
+    height: 50vh;
+
+    .confirm-button {
+      color: white;
+      border-radius: 30px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      height: 40px;
+      background: linear-gradient(90deg, #A643F4 0%, rgba(249, 89, 166, 0.9) 100%);
+    }
+  }
+}
