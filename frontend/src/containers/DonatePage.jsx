@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 import SideBar from '../components/SideBar';
 import VisionModal from '../components/VisionModal';
 import ThankYouModal from '../components/ThankYouModal';
+import Filters from '../components/Filters';
 
 import './style.scss';
 
@@ -36,6 +37,7 @@ const DonatePageContainer = () => {
       <ThankYouModal isModalVisible={isModalTwoVisible} closeModal={() => setIsModalTwoVisible(false)}/>
       <SideBar toggleSideBar={toggleSideBar} sideBarVis={sideBarVis}/>
       <Map mapLoad={mapLoad} sideBarVis={sideBarVis} />
+      <Filters /> 
     </div>
   )
 }
