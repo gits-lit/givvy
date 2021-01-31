@@ -1,4 +1,5 @@
 import { ADD_ITEM, REMOVE_ITEM, CLEAR_ITEMS } from '../actions/types';
+import category from '../assets/category.json';
 
 const initialState = {
   items: []
@@ -21,12 +22,23 @@ const ItemsReducer = (state = initialState, action) => {
           };
         }
       }
-      console.log('adding apples');
+      const itemCategory = category[action.payload.toLowerCase()] || 'other';
+      console.log(itemCategory);
       return {
         ...state,
-        items: [...state.items, [action.payload, 1]]
+        items: [...state.items, [action.payload, 1, itemCategory]]
       };
     case REMOVE_ITEM:
+      for (let i = 0; i < state.items.length; i++) {
+        if (state.items[i][0] === action.payload) {
+          const items = state.items.slice();
+          items.splice(i, 1);
+          return {
+            ...state,
+            items: items,
+          };
+        }
+      }
       return {
         ...state,
       };

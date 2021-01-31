@@ -4,10 +4,12 @@ import { Modal } from 'antd';
 import Webcam from "react-webcam";
 
 import {
+  DeleteOutlined,
   Loading3QuartersOutlined
 } from '@ant-design/icons';
 
 import { scanItem } from '../../actions/VisionActions';
+import { removeItem } from '../../actions/ItemsActions';
 
 import './style.scss';
 const VisionModal = (props) => {
@@ -15,6 +17,7 @@ const VisionModal = (props) => {
   const webcamRef = React.useRef(null);
   const canvasRef = React.useRef(null)
   const [imageSrc, setImageSrc] = useState('');
+  const [message, setMessage] = useState('No server found');
   const [imageTimeout, setImageTimeout] = useState('');
 
   const closeModal = () => {
@@ -35,16 +38,27 @@ const VisionModal = (props) => {
 
   const playCamera = () => {
     console.log('play camera');
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     setImageSrc('');
     const iTO = setTimeout(() => {
       if (webcamRef && webcamRef.current) {
         const base64 = webcamRef.current.getScreenshot();
         console.log('taking picture');
         setImageSrc(base64);
-        props.scanItem(base64, playCamera, drawCanvas);
+        props.scanItem(base64, playCamera, drawCanvas, setMessageTwo);
       }
     }, 10000);
     setImageTimeout(iTO);
+  }
+
+  const removeItem = (itemName) => {
+    props.removeItem(itemName);
+  }
+
+  const setMessageTwo = (message) => {
+    setMessage(message)
   }
 
   const drawCanvas = (bounds) => {
@@ -82,7 +96,13 @@ const VisionModal = (props) => {
       <Modal visible={props.isModalVisible} onOk={closeModal} onCancel={closeModal} footer={null} width="70vw">
         <div className="vision-modal">
           <div className="header">
-            <h1>Scan Items to Donate</h1>
+            <h1>Scan to donate</h1>
+            { imageSrc == '' && 
+            <div className="loading">
+              <Loading3QuartersOutlined spin />
+              <span>Scanning... </span>
+            </div>
+            }
           </div>
           <Webcam
             ref={webcamRef}
@@ -91,8 +111,12 @@ const VisionModal = (props) => {
             height={720}
             width={1280}
           />
+          
           { imageSrc != '' && 
+          <>
             <img className="screenshot" src={imageSrc}></img>
+            <div className="pop-up-message">{message}</div>
+            </>
           }
           <div className="canvas-container">
             <canvas ref={canvasRef} height={720} width={1280}/>
@@ -105,12 +129,13 @@ const VisionModal = (props) => {
               const quantity = item[1];
               return (
                 <div className="item" key={'item' + item[0]}>
-                  <p>{name}</p>
-                  <p>x{quantity}</p>
+                  <DeleteOutlined onClick={() => {removeItem(name)}}/>
+                  <span className="item-name">{name}</span>
+                  <span className="item-quantity">x{quantity}</span>
                 </div>
               );
             })}
-            <div className="confirm-button">Confirm Items</div>
+            <div className="confirm-button" onClick={props.rankShelters}>Confirm Items</div>
           </div>
         </div>
       </Modal>
@@ -124,5 +149,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { scanItem }
+  { removeItem, scanItem }
 )(VisionModal);
