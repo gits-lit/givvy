@@ -57,3 +57,30 @@ export const getShelters = (items) => async dispatch => {
     payload: reformattedData
   });
 }
+
+export const donateItems = (shelter, items) => async dispatch => {
+  const modifiedItems = []
+  for (let i = 0; i < items.length; i++ ) {
+    modifiedItems.push(items[i][0], items[i][1]); 
+  }
+  console.log(shelter);
+  console.log(modifiedItems);
+  const response = await fetch('https://givvy-api.herokuapp.com/api/item/donateItems', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      shelter: shelter,
+      donations: modifiedItems
+    }),
+  });
+
+  const data = await response.json();
+  console.log(data);
+  if (!data) throw new Error('Empty response from server');
+  if (data.error) throw new Error(data.error.message);
+
+  getShelters();
+}

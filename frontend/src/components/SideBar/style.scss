@@ -21,8 +21,8 @@
   justify-content: center;
   text-emphasis: center;
   .buildingtype {
-    margin-top: 30px;
-    height: 100px;
+    margin-top: 10px;
+    height: 120px;
   }
 }
 
@@ -51,7 +51,8 @@
   top: 10vh;
   transition: 0.5s;
   width: 30vw;
-  z-index: 1;
+  z-index: 5;
+  background-color: white;
 
   .bar-1 {
     height: 8vh;
@@ -117,7 +118,7 @@
       justify-content: space-around;
       width: 100%;
       margin-top: 2vh;
-      margin-bottom: 4vh;
+      margin-bottom: 2vh;
 
       .ant-progress-circle-gradient {
         width: 100px !important;

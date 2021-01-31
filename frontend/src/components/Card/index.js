@@ -9,17 +9,17 @@ const Card = (props) => {
       <div>
         <Progress
           type="circle"
-          percent={75}
+          percent={props.percent}
           strokeColor={{
             '0%': '#A643F4',
             '100%': 'rgba(249, 89, 166, 0.9)',
           }}
           strokeWidth={8}
           strokeLinecap="round"
+          width={100}
         />
         <div className="itemsneeded">
-          <h3>{props.units}</h3>
-          <span>of {props.item} needed</span>
+          <span>{props.units} {props.item}</span> <br/> <span> needed</span>
         </div>
       </div>
     </div>

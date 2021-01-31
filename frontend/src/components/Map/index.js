@@ -7,7 +7,7 @@ const Map = ReactMapboxGl({
 });
 
 const MapComponent = (props) => {
-  const leftMargin = props.sideBarVis ? '30vw' : '0';
+  const leftMargin = props.sideBarVis ? '15vw' : '0';
   console.log(props.sideBarVis);
 
   return (

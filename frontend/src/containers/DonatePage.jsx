@@ -42,10 +42,10 @@ const DonatePageContainer = (props) => {
       <NavBar enableModal={() => setIsModalVisible(true)} toggleSideBar={() => {setSideBar(!sideBarVis)}}/>
       <NavBar enableModal={() => setIsModalVisible(true)}
       toggleSideBar={() => {setSideBar(!sideBarVis)}}
-      toggleThankYouModal={() => {setIsModalTwoVisible(true)}}/>
+      toggleThankYouModal={()=>{}}/>
       <VisionModal isModalVisible={isModalVisible} closeModal={() => setIsModalVisible(false)}/>
       <ThankYouModal isModalVisible={isModalTwoVisible} closeModal={() => setIsModalTwoVisible(false)}/>
-      <SideBar toggleSideBar={toggleSideBar} sideBarVis={sideBarVis}/>
+      <SideBar toggleSideBar={toggleSideBar} sideBarVis={sideBarVis} toggleThankYouModal={() => {setIsModalTwoVisible(true)}}/>
       <Map mapLoad={mapLoad} sideBarVis={sideBarVis} />
       <Filters /> 
     </div>

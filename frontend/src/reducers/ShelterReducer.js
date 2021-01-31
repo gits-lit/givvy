@@ -17,7 +17,7 @@ const ShelterReducer = (state = initialState, action) => {
       console.log(action.payload);
       const newRanking = []
       for (let i = 0; i < 10; i++) {
-        newRanking.push(action.payload[i].name);
+        newRanking.push([action.payload[i].name, action.payload[i].type, action.payload[i].needs]);
       }
       console.log(newRanking);
         return {
