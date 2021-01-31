@@ -30,10 +30,31 @@ router.post('/donateItems', async (req, res) => {
 });
 
 router.post('/getItemByCategory', async (req, res) => {
-  const donRef = database.collection('shelters').doc(req.body.name)
-  const don = (await donRef.get())
-  const allShelters = don.data();
-  res.send(allShelters.category);
+  const donRef = database.collection('shelters');
+  const don = (await donRef.get());
+
+  const allShelters = []
+
+  don.forEach(doc => {
+    allShelters.push(doc.data());
+  });
+
+  let itemCategory = ""
+  
+  allShelters.forEach(doc => {
+    (doc.needs).forEach(supply => {
+      if (supply.name == req.body.name) {
+        itemCategory = doc.category;
+      }
+    });
+  });
+
+  if (itemCategory == "") {
+    res.send("Not in datatbase");
+  }
+  else {
+    res.send(itemCategory);
+  }
 });
 
 module.exports = router;
