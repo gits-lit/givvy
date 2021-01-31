@@ -1,6 +1,6 @@
 import { ADD_ITEM } from './types';
 
-export const scanItem = (base64, callback, drawCanvas) => async dispatch => {
+export const scanItem = (base64, callback, drawCanvas, setMessage) => async dispatch => {
   const payload = {
     requests: [
       {
@@ -45,6 +45,10 @@ export const scanItem = (base64, callback, drawCanvas) => async dispatch => {
         type: ADD_ITEM,
         payload: annotation.name
       });
+      setMessage(annotation.name + ' scanned');
+    }
+    else {
+      setMessage('Nothing found :(');
     }
   }
   */

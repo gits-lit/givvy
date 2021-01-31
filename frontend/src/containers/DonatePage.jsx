@@ -6,6 +6,8 @@ import SideBar from '../components/SideBar';
 import VisionModal from '../components/VisionModal';
 import ThankYouModal from '../components/ThankYouModal';
 
+import './style.scss';
+
 import { loadLocations } from '../actions/MapActions';
 
 const DonatePageContainer = () => {
@@ -25,7 +27,8 @@ const DonatePageContainer = () => {
   };
 
   return (
-    <>
+    <div className="donatepage">
+      <NavBar enableModal={() => setIsModalVisible(true)} toggleSideBar={() => {setSideBar(!sideBarVis)}}/>
       <NavBar enableModal={() => setIsModalVisible(true)}
       toggleSideBar={() => {setSideBar(!sideBarVis)}}
       toggleThankYouModal={() => {setIsModalTwoVisible(true)}}/>
@@ -33,7 +36,7 @@ const DonatePageContainer = () => {
       <ThankYouModal isModalVisible={isModalTwoVisible} closeModal={() => setIsModalTwoVisible(false)}/>
       <SideBar toggleSideBar={toggleSideBar} sideBarVis={sideBarVis}/>
       <Map mapLoad={mapLoad} sideBarVis={sideBarVis} />
-    </>
+    </div>
   )
 }
 
