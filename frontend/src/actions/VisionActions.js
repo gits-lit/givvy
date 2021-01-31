@@ -1,6 +1,6 @@
 import { ADD_ITEM } from './types';
 
-export const scanItem = (base64, callback) => async dispatch => {
+export const scanItem = (base64, callback, drawCanvas) => async dispatch => {
   const payload = {
     requests: [
       {
@@ -9,14 +9,14 @@ export const scanItem = (base64, callback) => async dispatch => {
         },
         features: [
           {
-            "maxResults": 1,
+            "maxResults": 5,
             "type": "OBJECT_LOCALIZATION"
           },
         ]
       }
     ]
   }
-/*
+
   const response = await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${process.env.REACT_APP_API_KEY}`, {
     method: 'POST',
     headers: {
@@ -25,11 +25,25 @@ export const scanItem = (base64, callback) => async dispatch => {
     },
     body: JSON.stringify(payload),
   });
-
+/*
   const data = await response.json();
   if (!data) throw new Error('Empty response from server');
   if (data.error) throw new Error(data.error.message);
-  console.log(data.responses[0].localizedObjectAnnotations[0].name);*/
+  if (data.responses && data.responses[0] && data.responses[0].localizedObjectAnnotations) {
+    let annotation = null;
+    for (let i = 0; i < data.responses[0].localizedObjectAnnotations.length; i++) {
+      annotation = data.responses[0].localizedObjectAnnotations[i];
+      if (annotation.name != "Person" && annotation.name != "Lighting") {
+        break;
+      }
+    }
+    if (annotation.name != "Person" && annotation.name != "Lighting") {
+      console.log(data.responses);
+      console.log(annotation.name);
+      drawCanvas(annotation.boundingPoly.normalizedVertices);
+    }
+  }
+  */
 
   setTimeout(() => {
     callback();

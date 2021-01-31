@@ -13,12 +13,31 @@
     object-fit: cover;
   }
 
+  .canvas-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 15vh;
+    left: 8vw;
+    width: 25vw;
+    height: 25vw;
+    z-index: 8;
+    overflow: hidden;
+    text-align: center;
+
+    canvas {
+      width: 44.44vw;
+      height: 25vw;
+    }
+  }
+
   .camera {
     position: absolute;
     top: 15vh;
     left: 8vw;
     width: 25vw;
-    height: 45vh;
+    height: 25vw;
     margin-right: 2vw;
     border-radius: 10px;
     display: inline-block;
@@ -29,7 +48,7 @@
     top: 15vh;
     left: 8vw;
     width: 25vw;
-    height: 45vh;
+    height: 25vw;
     z-index: 6;
     object-fit: cover;
     border-radius: 10px;
@@ -42,7 +61,7 @@
     left: 37vw;
     display: inline-block;
     width: 25vw;
-    height: 45vh;
+    height: 25vw;
 
     .line {
       width: 100%;

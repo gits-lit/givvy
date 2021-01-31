@@ -10,10 +10,10 @@ import {
 import { scanItem } from '../../actions/VisionActions';
 
 import './style.scss';
-let cameraTimer;
 const VisionModal = (props) => {
 
   const webcamRef = React.useRef(null);
+  const canvasRef = React.useRef(null)
   const [imageSrc, setImageSrc] = useState('');
 
   const closeModal = () => {
@@ -34,8 +34,38 @@ const VisionModal = (props) => {
       const base64 = webcamRef.current.getScreenshot();
       console.log('taking picture');
       setImageSrc(base64);
-      props.scanItem(base64, playCamera);
+      props.scanItem(base64, playCamera, drawCanvas);
     }, 10000);
+  }
+
+  const drawCanvas = (bounds) => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    let maxX = 0;
+    let maxY = 0;
+    let minX = 1300;
+    let minY = 1300;
+    for (let i = 0; i < bounds.length; i++) {
+      const corner = bounds[i];
+      const cornerX = corner.x || 0;
+      const cornerY = corner.y || 0;
+      maxX = Math.max(maxX, cornerX);
+      maxY = Math.max(maxY, cornerY);
+      minX = Math.min(minX, cornerX);
+      minY = Math.min(minY, cornerY);
+    }
+    const x = minX * canvas.width;
+    const width = (maxX - minX) * canvas.width;
+    const y = (minY) * canvas.height;
+    const height = (maxY - minY) * canvas.height;
+    ctx.beginPath();
+    var gradient = ctx.createLinearGradient(0, 0, 170, 0);
+    gradient.addColorStop("0", "#A643F4");
+    gradient.addColorStop("1", "#F959A6");
+    ctx.lineWidth = "6";
+    ctx.strokeStyle = gradient;
+    ctx.rect(x, y, width, height);
+    ctx.stroke();
   }
 
   return (
@@ -49,10 +79,15 @@ const VisionModal = (props) => {
             ref={webcamRef}
             className="camera"
             screenshotQuality={1}
+            height={720}
+            width={1280}
           />
           { imageSrc != '' && 
             <img className="screenshot" src={imageSrc}></img>
           }
+          <div className="canvas-container">
+            <canvas ref={canvasRef} height={720} width={1280}/>
+          </div>
           <div className="item-list">
             <h1>Items</h1>
             <div className="line"></div>
