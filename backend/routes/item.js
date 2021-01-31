@@ -3,7 +3,10 @@ const router = express.Router();
 const database = require('../firebase').database;
 
 router.post('/donateItems', async (req, res) => {
-  const donations = await database.collection('shelter').doc(req.body.name).needs;
+  const donRef = database.collection('shelters').doc(req.body.name)
+  const don = (await donRef.get())
+  const allShelters = don.data();
+
   let listOfItems = {};
   if (req.body.donations == null) {
     res.send("Undefined list");
@@ -17,11 +20,12 @@ router.post('/donateItems', async (req, res) => {
     listOfItems[supply[0]] = supply[1];
   });
 
-  donations.forEach(supply => {
+  (allShelters.needs).forEach(supply => {
     if (supply.name in listOfItems) {
-      supply.possession = Math.min(supply.need, supply.possession + listOfItems[supply.name]);
+      supply.possession = Math.min(supply.need, (parseInt(supply.possession) + 1).toString());
     }
   });
+  await donRef.update({needs: donations.needs});
   res.send("Donated Items");
 });
 
