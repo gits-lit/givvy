@@ -51,7 +51,7 @@ router.post('/rankShelters', async (req, res) => {
   let listOfItems = [];
 
   (req.body.donations).forEach(supply => {
-    listOfItems[supply[0]] = [supply[1], supply[2]];
+    listOfItems[toLowerCase(supply[0])] = [supply[1], supply[2]];
     category[supply[2]] += 1;
   });
 
@@ -66,12 +66,12 @@ router.post('/rankShelters', async (req, res) => {
 
   allShelters.forEach(doc => {
     let score = 0;
+    if (doc.category == priorityCategory) {
+      score += 5;
+    }
     (doc.needs).forEach(supply => {
       if (supply.name in listOfItems) {
-        if (doc.category == priorityCategory) {
-          score += 5;
-        }
-        score += Math.min(parseInt(supply.need), parseInt((listOfItems[supply.name])[0]));
+        score = Math.min(parseInt(supply.need), score + parseInt((listOfItems[supply.name])[0]));
       }
     });
     topShelters.push({
