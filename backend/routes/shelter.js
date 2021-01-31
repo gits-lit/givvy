@@ -11,7 +11,7 @@ router.get('/getShelters', async (req, res) => {
 
   don.forEach(doc => {
     arr.push(doc.data());
-  })
+  });
   
   arr.forEach(doc => {
     let item = [];
@@ -43,7 +43,7 @@ router.post('/rankShelters', async (req, res) => {
 
   don.forEach(doc => {
     allShelters.push(doc.data());
-  })
+  });
 
   const category = {clothes: 0, drink: 0, food: 0, supplies: 0};
   let topShelters = [];
