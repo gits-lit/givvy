@@ -64,6 +64,7 @@ const VisionModal = (props) => {
 
   const confirmDonation = () => {
     closeModal();
+    props.openSideBar();
     props.rankShelters(props.items);
   }
 

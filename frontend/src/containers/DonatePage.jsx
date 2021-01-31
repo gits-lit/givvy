@@ -17,7 +17,7 @@ let locations = {};
 
 const DonatePageContainer = (props) => {
 
-  const [sideBarVis, setSideBar] = useState(true);
+  const [sideBarVis, setSideBar] = useState(false);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalTwoVisible, setIsModalTwoVisible] = useState(false);
@@ -43,7 +43,7 @@ const DonatePageContainer = (props) => {
       <NavBar enableModal={() => setIsModalVisible(true)}
       toggleSideBar={() => {setSideBar(!sideBarVis)}}
       toggleThankYouModal={()=>{}}/>
-      <VisionModal isModalVisible={isModalVisible} closeModal={() => setIsModalVisible(false)}/>
+      <VisionModal isModalVisible={isModalVisible} closeModal={() => setIsModalVisible(false)} openSideBar= {() => {setSideBar(true)}}/>
       <ThankYouModal isModalVisible={isModalTwoVisible} closeModal={() => setIsModalTwoVisible(false)}/>
       <SideBar toggleSideBar={toggleSideBar} sideBarVis={sideBarVis} toggleThankYouModal={() => {setIsModalTwoVisible(true)}}/>
       <Map mapLoad={mapLoad} sideBarVis={sideBarVis} />

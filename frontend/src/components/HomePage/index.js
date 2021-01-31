@@ -31,10 +31,10 @@ const HomePage = () => {
         <h1>Community</h1>
         <h1>Through Donation</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. 
+          givvy is a platform built to encourage supporting your local community.
+          We use image recognition and real world data to quickly process your planned
+          donations. We then recommend a list of non-profits that could best benefit
+          from the goods you currently have.
         </p>
         <div className="buttons">
           <NavLink to="/donate">
