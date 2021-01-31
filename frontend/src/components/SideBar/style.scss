@@ -7,12 +7,22 @@
   height: 0;
   left: 12px !important;
   padding-left: 30px !important;
-  transition: .2s;
+  transition: 0.2s;
   &:before {
-    content: url(../../assets/backarrow.png) !important;
+    content: url(../../assets/backarrow.svg) !important;
   }
   &:hover {
     transform: scale(1.1);
+  }
+}
+
+.bcontainer {
+  display: flex !important;
+  justify-content: center;
+  text-emphasis: center;
+  .buildingtype {
+    margin-top: 30px;
+    height: 100px;
   }
 }
 
@@ -21,12 +31,12 @@
   height: 0;
   right: 12px !important;
   padding-right: 85px !important;
-  transition: .2s;
+  transition: 0.2s;
   &:before {
-    content: url(../../assets/nextarrow.png) !important;
+    content: url(../../assets/nextarrow.svg) !important;
   }
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 }
 
@@ -46,7 +56,7 @@
       position: absolute;
       top: 1.5vh;
       right: 5%;
-      transition: .2s;
+      transition: 0.2s;
       svg {
         height: 5vh;
         width: 4vh;
@@ -58,30 +68,77 @@
   }
 
   .bar-2 {
-    height: 40vh;
-    border-bottom: 1px solid #DDD3D3
+    height: 37vh;
+    border-bottom: 1px solid #ddd3d3;
+
+    .location {
+      margin-top: 5vh;
+      text-align: center;
+      h1 {
+        line-height: 10px;
+      }
+      h2 {
+        font-weight: 300;
+        font-size: 18px;
+      }
+    }
+
+    .title {
+      line-height: 20px;
+
+      h1 {
+        text-align: center;
+        font-weight: 600;
+      }
+      p {
+        text-align: center;
+      }
+    }
   }
 
   .bar-3 {
-    height: 42vh;
+    margin-top: 2vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
-    .cards {
-      display: flex;
+    h1 {
+      font-weight: 600;
     }
 
+    .ant-progress-line {
+      width: 90%;
+    }
+    .cards {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      margin-top: 2vh;
+      margin-bottom: 4vh;
+
+      .ant-progress-circle-gradient {
+        width: 100px !important;
+        height: 100px !important;
+      }
+    }
 
     .side-button {
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      background: linear-gradient(90deg, #A643F4 0%, rgba(249, 89, 166, 0.9) 100%);
+      background: linear-gradient(
+        90deg,
+        #a643f4 0%,
+        rgba(249, 89, 166, 0.9) 100%
+      );
       height: 50px;
       width: 70%;
       color: white;
       border-radius: 30px;
-      transition: .2s;
-
+      transition: 0.2s;
+      font-size: 18px;
+      font-weight: 600;
       &:hover {
         transform: scale(1.03);
         cursor: pointer;
@@ -90,11 +147,16 @@
       &:after {
         position: absolute;
         z-index: -1 !important;
-        top: 0; left: 0;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         border-radius: 30px;
-        background: linear-gradient(90deg, #A643F4 0%, rgba(249, 89, 166, 0.9) 100%);
+        background: linear-gradient(
+          90deg,
+          #a643f4 0%,
+          rgba(249, 89, 166, 0.9) 100%
+        );
         box-shadow: inset 0 0 2px 2px white;
         content: '';
       }
