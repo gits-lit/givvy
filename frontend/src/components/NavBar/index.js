@@ -5,8 +5,13 @@ import './style.scss';
 const NavBar = (props) => {
   return (
     <div className="nav-bar">
-      <div onClick={props.toggleSideBar}>Locations</div>
-      <div onClick={props.enableModal}>Scan Items</div>
+      <h2>givvy</h2>
+      <div className="links">
+        <div onClick={props.toggleSideBar}>Locations</div>
+        <div>Analytics</div>
+        <div>Current Items</div>
+      </div>
+      <div className="scan" onClick={props.enableModal}>Scan Items &#62;</div>
     </div>
   );
 };
