@@ -31,7 +31,7 @@ const VisionModal = (props) => {
       console.log('starting timer');
     }
     playCamera();
-  }, []);
+  }, [webcamRef.current]);
 
   const playCamera = () => {
     console.log('play camera');
