@@ -31,10 +31,10 @@ const DonatePageContainer = (props) => {
   }
 
   const mapLoad = map => {
-    window.map = map;
     setTimeout(() => {
+      window.map = map;
       loadLocations(map, locations);
-    }, 1000);
+    }, 2000);
   };
 
   return (
