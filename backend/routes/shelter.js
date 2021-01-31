@@ -45,7 +45,7 @@ router.post('/rankShelters', async (req, res) => {
     allShelters.push(doc.data());
   });
 
-  const category = {clothes: 0, drink: 0, food: 0, supplies: 0};
+  const category = {clothing: 0, drink: 0, food: 0, supply: 0};
   let topShelters = [];
   let listOfItems = [];
 
