@@ -25,7 +25,7 @@ export const scanItem = (base64, callback, drawCanvas, setMessage) => async disp
     },
     body: JSON.stringify(payload),
   });
-/*
+
   const data = await response.json();
   if (!data) throw new Error('Empty response from server');
   if (data.error) throw new Error(data.error.message);
@@ -51,7 +51,7 @@ export const scanItem = (base64, callback, drawCanvas, setMessage) => async disp
       setMessage('Nothing found :(');
     }
   }
-  */
+  
 
   setTimeout(() => {
     callback();

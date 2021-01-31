@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import Map from '../components/Map';
 import NavBar from '../components/NavBar';
@@ -10,13 +11,20 @@ import Filters from '../components/Filters';
 import './style.scss';
 
 import { loadLocations } from '../actions/MapActions';
+import { getShelters } from '../actions/ShelterActions';
 
-const DonatePageContainer = () => {
+let locations = {};
+
+const DonatePageContainer = (props) => {
 
   const [sideBarVis, setSideBar] = useState(true);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalTwoVisible, setIsModalTwoVisible] = useState(false);
+
+  useEffect(() => {
+    props.getShelters();
+  }, []);
 
   const toggleSideBar = (sideBarState) => {
     setSideBar(sideBarState);
@@ -24,7 +32,9 @@ const DonatePageContainer = () => {
 
   const mapLoad = map => {
     window.map = map;
-    loadLocations(map);
+    setTimeout(() => {
+      loadLocations(map, locations);
+    }, 1000);
   };
 
   return (
@@ -42,4 +52,14 @@ const DonatePageContainer = () => {
   )
 }
 
-export default DonatePageContainer;
+const mapStateToProps = state => {
+  locations = state.shelters.shelters;
+
+  return ({
+    shelters: state.shelters.shelters
+  })};
+
+export default connect(
+  mapStateToProps,
+  { getShelters }
+)(DonatePageContainer);

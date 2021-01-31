@@ -19,15 +19,15 @@ const MapComponent = (props) => {
         marginLeft: leftMargin,
         transition: '.5s'
       }}
-      center={[-118.2437, 34.0522]}
+      center={[-117.06651266267941, 32.76570649214452]}
       flyToOptions={{
-        speed: 0
+        speed: 2
       }}
       onClick={props.mapClick}
       onStyleLoad={props.mapLoad}
       pitch = {[60]}
       style="mapbox://styles/mapbox/light-v10"
-      zoom = {[15]}
+      zoom = {[16]}
     >
     </Map>
   );

@@ -1,6 +1,13 @@
 {
   "apple": "food",
+  "avocado": "food",
+  "banana": "food",
+  "bottle": "drinks",
+  "packaged goods": "food",
+  "pillow": "supply",
   "top": "clothing",
   "outerwear": "clothing",
-  "clothing": "clothing"
+  "clothing": "clothing",
+  "glasses": "clothing",
+  "shoe": "clothing"
 }

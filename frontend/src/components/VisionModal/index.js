@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons';
 
 import { scanItem } from '../../actions/VisionActions';
+import { rankShelters } from '../../actions/ShelterActions';
 import { removeItem } from '../../actions/ItemsActions';
 
 import './style.scss';
@@ -58,7 +59,12 @@ const VisionModal = (props) => {
   }
 
   const setMessageTwo = (message) => {
-    setMessage(message)
+    setMessage(message);
+  }
+
+  const confirmDonation = () => {
+    closeModal();
+    props.rankShelters(props.items);
   }
 
   const drawCanvas = (bounds) => {
@@ -135,7 +141,7 @@ const VisionModal = (props) => {
                 </div>
               );
             })}
-            <div className="confirm-button" onClick={props.rankShelters}>Confirm Items</div>
+            <div className="confirm-button" onClick={confirmDonation}>Confirm Items</div>
           </div>
         </div>
       </Modal>
@@ -149,5 +155,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { removeItem, scanItem }
+  { removeItem, scanItem, rankShelters }
 )(VisionModal);

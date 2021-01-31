@@ -1,4 +1,5 @@
 import { MenuOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
 
 import { Carousel, Progress } from 'antd';
 import Card from '../Card';
@@ -88,4 +89,11 @@ const SideBar = (props) => {
   );
 };
 
-export default SideBar;
+const mapStateToProps = state => ({
+  ranking: state.shelters.ranking
+});
+
+export default connect(
+  mapStateToProps,
+  { }
+)(SideBar);
