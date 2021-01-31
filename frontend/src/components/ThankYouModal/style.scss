@@ -1,3 +1,31 @@
 .thank-you-modal {
-  height: 500px;
+  margin-top: 10vh;
+  border-radius: 10px;
+  height: 40vh;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  background: linear-gradient(90deg, #9EF6FF 0%, rgba(241, 102, 255, 0.8) 50%, #EFB534 100%);
+  .check {
+    margin: 20px 0;
+    height: 13vh;
+    width: auto;
+  }
+  .note {
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    bottom: 0;
+    margin-top: 100px;
+    background-color: white;
+    height: 22vh;
+    padding: 35px 45px;
+    margin-bottom: 0;
+    .thank-you {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .appreciation {
+      padding-top: 5px;
+    }
+  }
 }

@@ -20,7 +20,7 @@ router.get('/getShelters', async (req, res) => {
       if (i == 3) {
         break;
       }
-      item.push((doc.needs)[i].name);
+      item.push([(doc.needs)[i].name, doc.needs[i].need, doc.needs[i].possession]);
     }
 
     shelters.push({
