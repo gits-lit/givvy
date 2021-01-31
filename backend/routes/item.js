@@ -3,7 +3,7 @@ const router = express.Router();
 const database = require('../firebase').database;
 
 router.post('/donateItems', async (req, res) => {
-  const donRef = database.collection('shelters').doc(req.body.name)
+  const donRef = database.collection('shelters').doc(req.body.name);
   const don = (await donRef.get())
   const allShelters = don.data();
 
