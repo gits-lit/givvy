@@ -15,9 +15,15 @@ const VisionModal = (props) => {
   const webcamRef = React.useRef(null);
   const canvasRef = React.useRef(null)
   const [imageSrc, setImageSrc] = useState('');
+  const [imageTimeout, setImageTimeout] = useState('');
 
   const closeModal = () => {
+    console.log('closing modal');
     props.closeModal();
+    if (imageTimeout) {
+      console.log('clearing timeout');
+      clearTimeout(imageTimeout);
+    }
   }
 
   useEffect(() => {
@@ -30,12 +36,13 @@ const VisionModal = (props) => {
   const playCamera = () => {
     console.log('play camera');
     setImageSrc('');
-    setTimeout(() => {
+    const iTO = setTimeout(() => {
       const base64 = webcamRef.current.getScreenshot();
       console.log('taking picture');
       setImageSrc(base64);
       props.scanItem(base64, playCamera, drawCanvas);
     }, 10000);
+    setImageTimeout(iTO);
   }
 
   const drawCanvas = (bounds) => {
