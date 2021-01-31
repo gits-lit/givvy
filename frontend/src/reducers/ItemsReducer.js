@@ -7,8 +7,24 @@ const initialState = {
 const ItemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_ITEM:
+      console.log('ADD ITEM');
+      console.log(state.items);
+      for (let i = 0; i < state.items.length; i++) {
+        console.log(state.items[i]);
+        if (state.items[i][0] === action.payload) {
+          const items = state.items.slice();
+          items[i][1] += 1;
+          console.log('already have apples');
+          return {
+            ...state,
+            items: items,
+          };
+        }
+      }
+      console.log('adding apples');
       return {
         ...state,
+        items: [...state.items, [action.payload, 1]]
       };
     case REMOVE_ITEM:
       return {
@@ -24,4 +40,4 @@ const ItemsReducer = (state = initialState, action) => {
   }
 };
 
-export default ShelterReducer;
+export default ItemsReducer;
