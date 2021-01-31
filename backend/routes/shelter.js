@@ -3,24 +3,32 @@ const router = express.Router();
 const database = require('../firebase').database;
 
 router.get('/getShelters', async (req, res) => {
-  const allShelters = await database.collection('shelter').get();
+  const donRef = database.collection('shelters');
+  const don = (await donRef.get());
+
+  const arr = []
   let shelters = [];
+
+  don.forEach(doc => {
+    arr.push(doc.data());
+  })
   
-  allShelters.forEach(doc => {
+  arr.forEach(doc => {
     let item = [];
     (doc.needs).sort((a, b) => (-1 * (a.need - b.need)));
-    (doc.needs).forEach(supply => {
-      let i = 0;
-      while (i < 3 && i < doc.needs.length) {
-        item.push(supply[i].name);
-        i++;
+    for (let i = 0; i < doc.needs.length; i++) {
+      if (i == 3) {
+        break;
       }
-    });
+      item.push((doc.needs)[i].name);
+    }
 
     shelters.push({
       name: doc.name,
+      address: doc.address,
       lat: doc.lat,
       long: doc.long,
+      category: doc.category,
       donations: item
     });
   });
@@ -28,14 +36,22 @@ router.get('/getShelters', async (req, res) => {
 });
 
 router.post('/rankShelters', async (req, res) => {
-  const allShelters = await database.collection('shelter').get();
+  const donRef = database.collection('shelters');
+  const don = await donRef.get();
+
+  const allShelters = []
+
+  don.forEach(doc => {
+    allShelters.push(doc.data());
+  })
+
   const category = {clothes: 0, drink: 0, food: 0, supplies: 0};
   let topShelters = [];
   let listOfItems = [];
 
-  (req.body.donations).forEach(item => {
-    listOfItems[item[0]] = [item[1], item[2]];
-    category[listOfItems[2]] += 1;
+  (req.body.donations).forEach(supply => {
+    listOfItems[supply[0]] = [supply[1], supply[2]];
+    category[supply[2]] += 1;
   });
 
   let priorityCategory = ""
@@ -49,13 +65,12 @@ router.post('/rankShelters', async (req, res) => {
 
   allShelters.forEach(doc => {
     let score = 0;
-
-    (doc.needs).forEach(items => {
-      if (items.name in listOfItems) {
+    (doc.needs).forEach(supply => {
+      if (supply.name in listOfItems) {
         if (doc.category == priorityCategory) {
           score += 5;
         }
-        score += Math.min(item[1], listOfItems[item[0]][0]);
+        score += Math.min(parseInt(supply.need), parseInt((listOfItems[supply.name])[0]));
       }
     });
     topShelters.push([doc.name, score]);
