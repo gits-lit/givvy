@@ -1,5 +1,10 @@
 .card {
   border: 2.08621px solid #DDD3D3;
-  height: 200px;
-  width: 200px;
+  padding: 10px 7.5px;
+  border-radius: 10%;
+  display: grid;
+  place-items: center;
+  .itemsneeded {
+    text-align: center;
+  }
 }
