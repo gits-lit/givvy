@@ -29,18 +29,20 @@ const VisionModal = (props) => {
   useEffect(() => {
     if (props.isModalVisible) {
       console.log('starting timer');
+          playCamera();
     }
-    playCamera();
-  }, [webcamRef.current]);
+  }, [props.isModalVisible]);
 
   const playCamera = () => {
     console.log('play camera');
     setImageSrc('');
     const iTO = setTimeout(() => {
-      const base64 = webcamRef.current.getScreenshot();
-      console.log('taking picture');
-      setImageSrc(base64);
-      props.scanItem(base64, playCamera, drawCanvas);
+      if (webcamRef && webcamRef.current) {
+        const base64 = webcamRef.current.getScreenshot();
+        console.log('taking picture');
+        setImageSrc(base64);
+        props.scanItem(base64, playCamera, drawCanvas);
+      }
     }, 10000);
     setImageTimeout(iTO);
   }
